@@ -9,6 +9,15 @@ public class Vaccine {
     private String dogName;
     private String ownerid;
     private String type;
+    private String nextdate;
+
+    public String getNextdate() {
+        return nextdate;
+    }
+
+    public void setNextdate(String nextdate) {
+        this.nextdate = nextdate;
+    }
 
     public Vaccine(){
 

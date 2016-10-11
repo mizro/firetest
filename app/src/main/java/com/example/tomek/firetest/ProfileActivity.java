@@ -8,8 +8,10 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -32,18 +34,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     //view objects
     private TextView textViewUserEmail;
-    private Button buttonLogout;
     private Button buttonAddDog;
 
     private ListView listViewShowDogs;
     private ArrayList<String> mMessages = new ArrayList<>();
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
@@ -67,7 +65,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         //initializing views
         textViewUserEmail = (TextView) findViewById(R.id.textViewUserEmail);
-        buttonLogout = (Button) findViewById(R.id.buttonLogout);
         buttonAddDog = (Button) findViewById(R.id.buttonAddDog);
         listViewShowDogs = (ListView) findViewById((R.id.listViewShowDogs));
 
@@ -75,14 +72,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         //textViewUserEmail.setText("Welcome "+user.getEmail());
 
         //adding listener to button
-        buttonLogout.setOnClickListener(this);
         buttonAddDog.setOnClickListener(this);
 
         Firebase ref = new Firebase("https://firetest-49b5c.firebaseio.com");
 
         Query r = ref.child("Dogs").orderByChild("owner").equalTo(user.getUid());
 
-        r.addListenerForSingleValueEvent(new ValueEventListener() {
+        r.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
@@ -92,7 +88,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                     String message = dog.getName();
 
                     mMessages.add(message);
-
 
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(
                             ProfileActivity.this,
@@ -108,27 +103,54 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
+        listViewShowDogs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String var = ((TextView) view).getText().toString();
 
-
+                Intent intent = new Intent(getApplicationContext(), ShowAnimalDetails.class);
+                intent.putExtra("var", var);
+                startActivity(intent);
+            }
+        });
 
     }
 
+    public void showDetails(){
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.logout, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.logout:
+                logout();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void logout() {
+        //if logout is pressed
+        firebaseAuth.signOut();
+        //closing activity
+        finish();
+        //starting login activity
+        startActivity(new Intent(this, LoginActivity.class));
+    }
 
     @Override
     public void onClick(View view) {
-        //if logout is pressed
-        if(view == buttonLogout){
-            //logging out the user
-            firebaseAuth.signOut();
-            //closing activity
-            finish();
-            //starting login activity
-            startActivity(new Intent(this, LoginActivity.class));
-        }
 
         if(view == buttonAddDog){
-            textViewUserEmail.setText("Welcome ");
+            //textViewUserEmail.setText("Welcome ");
             startActivity(new Intent(this, AddDogActivity.class));
         }
     }

@@ -36,10 +36,10 @@
         android:layout_height="wrap_content"
         android:text="Dodaj"
         android:id="@+id/buttonInsertDog"
-        android:layout_below="@+id/editTextBirthDate"
+        android:layout_marginTop="48dp"
+        android:layout_below="@+id/editTextUniqNumber"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="41dp" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -52,13 +52,48 @@
         android:layout_alignRight="@+id/editTextBirthDate"
         android:layout_alignEnd="@+id/editTextBirthDate" />
 
-    <ListView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listViewDogs"
-        android:layout_alignParentBottom="true"
+        android:hint="Umaszczenie"
+        android:id="@+id/editTextColor"
+        android:layout_below="@+id/editTextRace"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/textViewDogs" />
+        android:layout_alignRight="@+id/editTextRace"
+        android:layout_alignEnd="@+id/editTextRace" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Znaki szczególne"
+        android:id="@+id/editTextSpecialSigns"
+        android:layout_below="@+id/editTextColor"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/editTextColor"
+        android:layout_alignEnd="@+id/editTextColor" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="Numer identyfikujący"
+        android:ems="10"
+        android:id="@+id/editTextUniqNumber"
+        android:layout_below="@+id/editTextSpecialSigns"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextRace"
+        android:hint="Rasa"
+        android:layout_below="@+id/editTextBirthDate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/editTextBirthDate"
+        android:layout_alignEnd="@+id/editTextBirthDate" />
 
 </RelativeLayout>

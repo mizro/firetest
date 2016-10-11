@@ -1,20 +1,15 @@
 package com.example.tomek.firetest;
 
-import android.app.ActionBar;
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -22,12 +17,7 @@ import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
-import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,8 +29,11 @@ public class AddDogActivity extends AppCompatActivity {
     private EditText editTextDogName;
     private EditText editTextBirthDate;
     private TextView textViewDogs;
-    private ListView listViewDogs;
-    private ArrayList<String> mMessages = new ArrayList<>();
+    private EditText editTextColor;
+    private EditText editTextSpecialSigns;
+    private EditText editTextUniqNumber;
+    private EditText editTextRace;
+
 
     private FirebaseAuth firebaseAuth;
 
@@ -49,7 +42,7 @@ public class AddDogActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_dog2);
+        setContentView(R.layout.activity_add_dog);
 
        // ActionBar actionBar = getActionBar();
        // actionBar.setDisplayHomeAsUpEnabled(true);
@@ -60,7 +53,11 @@ public class AddDogActivity extends AppCompatActivity {
         editTextBirthDate = (EditText) findViewById(R.id.editTextBirthDate);
         editTextDogName = (EditText) findViewById(R.id.editTextDogName);
         textViewDogs = (TextView) findViewById(R.id.textViewDogs);
-        listViewDogs = (ListView) findViewById((R.id.listViewDogs));
+        editTextUniqNumber = (EditText) findViewById(R.id.editTextUniqNumber);
+        editTextRace = (EditText) findViewById(R.id.editTextRace);
+        editTextColor = (EditText) findViewById(R.id.editTextColor);
+        editTextSpecialSigns = (EditText) findViewById(R.id.editTextSpecialSigns);
+
 
         progressDialog = new ProgressDialog(this);
 
@@ -92,14 +89,14 @@ public class AddDogActivity extends AppCompatActivity {
                     long diff = c.getTimeInMillis() - c1.getTimeInMillis();
                     long days = diff /(24*60*60*1000);
                     String dayss = Long.toString(days);
-                    mMessages.add("Do szczepienia pozostało: " + dayss + " dni.");
-
-
-                        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                                AddDogActivity.this,
-                                android.R.layout.simple_list_item_1,
-                                mMessages);
-                        listViewDogs.setAdapter(adapter);
+//                    mMessages.add("Do szczepienia pozostało: " + dayss + " dni.");
+//
+//
+//                        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+//                                AddDogActivity.this,
+//                                android.R.layout.simple_list_item_1,
+//                                mMessages);
+//                        listViewDogs.setAdapter(adapter);
 
 
                 }
@@ -173,17 +170,28 @@ public class AddDogActivity extends AppCompatActivity {
                 String name = editTextDogName.getText().toString().trim();
                 String birthdate = editTextBirthDate.getText().toString().trim();
                 String userID = u;
+                String color = editTextColor.getText().toString().trim();
+                String specialSigns = editTextSpecialSigns.toString().trim();
+                String uniqNumber = editTextUniqNumber.toString().trim();
+                String race = editTextRace.toString().trim();
 
                 Dog dog = new Dog();
 
                 dog.setBirthdate(birthdate);
                 dog.setName(name);
                 dog.setOwner(userID);
+                dog.setColor(color);
+                dog.setRace(race);
+                dog.setSpecialSigns(specialSigns);
+                dog.setUniqNumber(uniqNumber);
 
                 Firebase newref = ref.child("Dogs").push();
                 newref.setValue(dog);
 
                 Firebase newref1 = ref.child("Vaccines").push();
+
+                newref.setValue(dog);
+
 
                 Vaccine vac = new Vaccine();
                 Calendar c = Calendar.getInstance();
@@ -195,7 +203,9 @@ public class AddDogActivity extends AppCompatActivity {
                 vac.setDogName("lucy");
                 vac.setType("wscieklizna");
 
-                newref1.setValue(vac);
+
+               // newref1.setValue(vac);
+                //  newref1.setValue(vac);
                 //ref.child("Dogs").setValue(dog);
                // progressDialog.setMessage(u);
                // progressDialog.show();

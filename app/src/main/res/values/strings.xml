@@ -3,4 +3,12 @@
     <string name="title_activity_add_dog">AddDogActivity</string>
     <string name="title_activity_temp">temp</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="logout">Logout</string>
+
+    <string-array name="planets_array">
+    <item>Labrador</item>
+    <item>Jamnik</item>
+    <item>Owczarek niemiecki</item>
+    <item>Kundel</item>
+    </string-array>
 </resources>
