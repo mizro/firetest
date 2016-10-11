@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "519399933754",
+    "firebase_url": "https://firetest-49b5c.firebaseio.com",
+    "project_id": "firetest-49b5c",
+    "storage_bucket": "firetest-49b5c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:519399933754:android:371372840ff033f0",
+        "android_client_info": {
+          "package_name": "com.example.tomek.firetest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "519399933754-5h5ss8pdqil6mbnl969rr898cqns0jle.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDL1ZZC0llBkYM6qjmtZsYyYUVdQC0YQng"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
