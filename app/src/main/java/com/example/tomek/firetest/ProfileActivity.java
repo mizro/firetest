@@ -4,23 +4,18 @@ package com.example.tomek.firetest;
  * Created by Tomek on 2016-09-12.
  */
 
-import android.app.ActionBar;
 import android.content.Intent;
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.CheckedTextView;
-import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.tomek.firetest.adapter.AnimalsAdapter;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -40,8 +35,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private TextView textViewUserEmail;
     private Button buttonAddDog;
 
-    private ListView listViewShowDogs;
+
     private ArrayList<String> mMessages = new ArrayList<>();
+    private RecyclerView rvAnimals;
+    private LinearLayoutManager layoutManager;
+    private AnimalsAdapter adapter;
 
 
     @Override
@@ -49,6 +47,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        renderView();
 
         Firebase.setAndroidContext(this);
 
@@ -70,7 +69,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         //initializing views
         textViewUserEmail = (TextView) findViewById(R.id.textViewUserEmail);
         buttonAddDog = (Button) findViewById(R.id.buttonAddDog);
-        listViewShowDogs = (ListView) findViewById((R.id.listViewShowDogs));
+
 
         //displaying logged in user name
         //textViewUserEmail.setText("Welcome "+user.getEmail());
@@ -85,22 +84,26 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         r.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Dog> dogs = new ArrayList<>();
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
 
                     Dog dog = dataSnapshot1.getValue(Dog.class);
+                    dogs.add(dog);
+//
+//                    String message = dog.getName();
+//
+//
+//                    mMessages.add(message);
+//
+//
+//                    ArrayAdapter<String> adapter = new ArrayAdapter<>(
+//                            ProfileActivity.this,
+//                            android.R.layout.simple_list_item_1,
+//                            mMessages);
+//                    listViewShowDogs.setAdapter(adapter);
 
-                    String message = dog.getName();
-
-
-                    mMessages.add(message);
-
-
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                            ProfileActivity.this,
-                            android.R.layout.simple_list_item_1,
-                            mMessages);
-                    listViewShowDogs.setAdapter(adapter);
                 }
+                adapter.setAnimals(dogs);
             }
 
             @Override
@@ -110,54 +113,63 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         });
 
 
-        listViewShowDogs.setAdapter(new BaseAdapter() {
-            @Override
-            public int getCount() {
-                return 0;
-            }
-
-            @Override
-            public Object getItem(int position) {
-                return null;
-            }
-
-            @Override
-            public long getItemId(int position) {
-                return 0;
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-
-                View v = convertView;
-                mMessages.get(position);
-
-                if (position % 2 == 1){
-                    ((TextView)convertView).setTextColor(Color.BLUE);
-                }
-
-                return v;
-            }
-        });
-
-
+//        listViewShowDogs.setAdapter(new BaseAdapter() {
+//            @Override
+//            public int getCount() {
+//                return 0;
+//            }
+//
+//            @Override
+//            public Object getItem(int position) {
+//                return null;
+//            }
+//
+//            @Override
+//            public long getItemId(int position) {
+//                return 0;
+//            }
+//
+//            @Override
+//            public View getView(int position, View convertView, ViewGroup parent) {
+//
+//                View v = convertView;
+//                mMessages.get(position);
+//
+//                if (position % 2 == 1){
+//                    ((TextView)convertView).setTextColor(Color.BLUE);
+//                }
+//
+//                return v;
+//            }
+//        });
 
 
-        listViewShowDogs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String var = ((TextView) view).getText().toString();
 
-               // ((TextView) view).setTextColor(Color.BLUE);
 
-                Intent intent = new Intent(getApplicationContext(), ShowAnimalDetails.class);
-                intent.putExtra("var", var);
-                startActivity(intent);
-            }
-        });
+//        listViewShowDogs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                String var = ((TextView) view).getText().toString();
+//
+//               // ((TextView) view).setTextColor(Color.BLUE);
+//
+//                Intent intent = new Intent(getApplicationContext(), ShowAnimalDetails.class);
+//                intent.putExtra("var", var);
+//                startActivity(intent);
+//            }
+//        });
 
     }
 
+    private void renderView() {
+        rvAnimals = (RecyclerView) findViewById(R.id.rv_animals);
+
+        layoutManager = new LinearLayoutManager(this);
+        rvAnimals.setLayoutManager(layoutManager);
+
+        adapter = new AnimalsAdapter();
+        rvAnimals.setAdapter(adapter);
+    }
 
 
     @Override

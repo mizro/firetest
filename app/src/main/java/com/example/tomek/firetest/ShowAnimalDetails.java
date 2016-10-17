@@ -1,9 +1,8 @@
 package com.example.tomek.firetest;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ExpandableListView;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.firebase.client.DataSnapshot;
@@ -16,6 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class ShowAnimalDetails extends AppCompatActivity {
 
+    public static final String ANIMAL_NAME = "animal_name";
 
     private TextView text;
     private TextView text2;
@@ -57,11 +57,11 @@ public class ShowAnimalDetails extends AppCompatActivity {
                     Bundle b = intent.getExtras();
 
                     if (b != null) {
-                        String s = (String) b.get("var");
+                        String s = (String) b.get(ANIMAL_NAME);
 
                     Dog dog = dataSnapshot1.getValue(Dog.class);
 
-                        if(dog.getName().toString().equals(s)){
+                        if(dog.getName().equals(s)){
 
                             String name = dog.getName();
                             String color = dog.getColor();
