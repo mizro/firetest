@@ -1,6 +1,7 @@
 package com.example.tomek.firetest;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -44,9 +45,6 @@ public class AddDogActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_dog);
 
-       // ActionBar actionBar = getActionBar();
-       // actionBar.setDisplayHomeAsUpEnabled(true);
-
         Firebase.setAndroidContext(this);
 
         buttonInsertDog = (Button) findViewById(R.id.buttonInsertDog);
@@ -57,9 +55,6 @@ public class AddDogActivity extends AppCompatActivity {
         editTextRace = (EditText) findViewById(R.id.editTextRace);
         editTextColor = (EditText) findViewById(R.id.editTextColor);
         editTextSpecialSigns = (EditText) findViewById(R.id.editTextSpecialSigns);
-
-
-        progressDialog = new ProgressDialog(this);
 
         Firebase ref = new Firebase("https://firetest-49b5c.firebaseio.com");
 
@@ -108,41 +103,6 @@ public class AddDogActivity extends AppCompatActivity {
             }
         });
 
-
-
-//        r.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-////
-//               // String message = (String) dataSnapshot.getValue();
-//                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-//
-//                    Dog dog = dataSnapshot1.getValue(Dog.class);
-//                    if(dog.getBirthdate().equals("data")) {
-//
-//
-//                        String message = dog.getName();
-//
-//
-//                        mMessages.add(message);
-//
-//
-//                        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-//                                AddDogActivity.this,
-//                                android.R.layout.simple_list_item_1,
-//                                mMessages);
-//                        listViewDogs.setAdapter(adapter);
-//                    }
-//                }
-//            }
-//
-//
-//            @Override
-//            public void onCancelled(FirebaseError firebaseError) {
-//
-//            }
-//        });
-
         buttonInsertDog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -171,9 +131,9 @@ public class AddDogActivity extends AppCompatActivity {
                 String birthdate = editTextBirthDate.getText().toString().trim();
                 String userID = u;
                 String color = editTextColor.getText().toString().trim();
-                String specialSigns = editTextSpecialSigns.toString().trim();
-                String uniqNumber = editTextUniqNumber.toString().trim();
-                String race = editTextRace.toString().trim();
+                String specialSigns = editTextSpecialSigns.getText().toString().trim();
+                String uniqNumber = editTextUniqNumber.getText().toString().trim();
+                String race = editTextRace.getText().toString().trim();
 
                 Dog dog = new Dog();
 
@@ -191,6 +151,9 @@ public class AddDogActivity extends AppCompatActivity {
                 Firebase newref1 = ref.child("Vaccines").push();
 
                 newref.setValue(dog);
+
+                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                startActivity(intent);
 
 
                 Vaccine vac = new Vaccine();
@@ -213,10 +176,4 @@ public class AddDogActivity extends AppCompatActivity {
             }
         });
     }
-//    public boolean onOptionsItemSelected(MenuItem item){
-//        Intent myIntent = new Intent(getApplicationContext(), ProfileActivity.class);
-//        startActivityForResult(myIntent, 0);
-//        return true;
-//
-//    }
 }

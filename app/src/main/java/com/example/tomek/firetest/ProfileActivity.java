@@ -6,14 +6,18 @@ package com.example.tomek.firetest;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -87,7 +91,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
                     String message = dog.getName();
 
+
                     mMessages.add(message);
+
 
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(
                             ProfileActivity.this,
@@ -103,10 +109,46 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
+
+        listViewShowDogs.setAdapter(new BaseAdapter() {
+            @Override
+            public int getCount() {
+                return 0;
+            }
+
+            @Override
+            public Object getItem(int position) {
+                return null;
+            }
+
+            @Override
+            public long getItemId(int position) {
+                return 0;
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+
+                View v = convertView;
+                mMessages.get(position);
+
+                if (position % 2 == 1){
+                    ((TextView)convertView).setTextColor(Color.BLUE);
+                }
+
+                return v;
+            }
+        });
+
+
+
+
         listViewShowDogs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String var = ((TextView) view).getText().toString();
+
+               // ((TextView) view).setTextColor(Color.BLUE);
 
                 Intent intent = new Intent(getApplicationContext(), ShowAnimalDetails.class);
                 intent.putExtra("var", var);
@@ -116,9 +158,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    public void showDetails(){
 
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
