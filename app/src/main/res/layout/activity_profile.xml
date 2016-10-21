@@ -15,15 +15,15 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_animals"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="214dp"
         android:scrollbars="vertical" />
 
     <Button
         android:id="@+id/buttonAddDog"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:text="Dodaj psiaka"
 
-        />
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

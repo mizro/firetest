@@ -1,6 +1,7 @@
 package com.example.tomek.firetest.adapter;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by ptrocki on 17/10/16.
+ * Created by Tomek on 17/10/16.
  */
 
 public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.AnimalViewHolder> {
@@ -59,6 +60,9 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.AnimalVi
         final Dog dog = animals.get(position);
         holder.tvAnimalName.setText(dog.getName());
         holder.tvAnimalBirthdate.setText(dog.getBirthdate());
+        holder.tvAnimalName.setTextColor(Color.BLUE);
+
+
         holder.cvAnimals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

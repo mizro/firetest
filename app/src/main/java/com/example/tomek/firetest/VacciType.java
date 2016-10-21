@@ -6,7 +6,7 @@ package com.example.tomek.firetest;
 public class VacciType {
 
     private String name;
-    private int days;
+
 
     public VacciType(){
 
@@ -20,11 +20,5 @@ public class VacciType {
         this.name = name;
     }
 
-    public int getDays() {
-        return days;
-    }
 
-    public void setDays(int days) {
-        this.days = days;
-    }
 }

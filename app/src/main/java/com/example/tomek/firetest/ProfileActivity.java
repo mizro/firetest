@@ -5,7 +5,9 @@ package com.example.tomek.firetest;
  */
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.tomek.firetest.adapter.AnimalsAdapter;
+import com.example.tomek.firetest.adapter.DividerItemDecoration;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -40,6 +43,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private RecyclerView rvAnimals;
     private LinearLayoutManager layoutManager;
     private AnimalsAdapter adapter;
+
 
 
     @Override
@@ -84,7 +88,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         r.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
                 ArrayList<Dog> dogs = new ArrayList<>();
+
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
 
                     Dog dog = dataSnapshot1.getValue(Dog.class);
@@ -169,6 +175,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         adapter = new AnimalsAdapter();
         rvAnimals.setAdapter(adapter);
+
+       // Drawable dividerDrawable = ContextCompat.getDrawable(this, R.drawable.divider);
+       // RecyclerView.ItemDecoration dividerItemDecoration = new DividerItemDecoration(dividerDrawable);
+      //  rvAnimals.addItemDecoration(dividerItemDecoration);
     }
 
 

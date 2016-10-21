@@ -86,13 +86,21 @@
         android:layout_alignLeft="@+id/textViewRasa"
         android:layout_alignStart="@+id/textViewRasa" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dodaj Szczepienie"
+        android:id="@+id/addVaccineButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"
+        android:id="@+id/listViewTemp"
         android:layout_below="@+id/textViewData"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="34dp" />
+        android:layout_above="@+id/addVaccineButton" />
 
 </RelativeLayout>
