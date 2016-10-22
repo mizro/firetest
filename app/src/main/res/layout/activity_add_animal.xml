@@ -7,13 +7,13 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.tomek.firetest.AddDogActivity">
+    tools:context=".AddAnimalActivity">
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Imię psa"
+        android:hint="Imię"
         android:ems="10"
         android:id="@+id/editTextDogName"
         android:layout_alignParentTop="true"
@@ -36,8 +36,8 @@
         android:layout_height="wrap_content"
         android:text="Dodaj"
         android:id="@+id/buttonInsertDog"
-        android:layout_marginTop="48dp"
-        android:layout_below="@+id/editTextUniqNumber"
+        android:layout_marginTop="43dp"
+        android:layout_below="@+id/cbfemale"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -95,5 +95,36 @@
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/editTextBirthDate"
         android:layout_alignEnd="@+id/editTextBirthDate" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Płeć"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/editTextUniqNumber"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="żeńska"
+        android:id="@+id/cbfemale"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:checked="false" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="męska"
+        android:id="@+id/cbmale"
+        android:checked="false"
+        android:layout_alignTop="@+id/cbfemale"
+        android:layout_toRightOf="@+id/buttonInsertDog"
+        android:layout_toEndOf="@+id/buttonInsertDog" />
 
 </RelativeLayout>

@@ -5,9 +5,7 @@ package com.example.tomek.firetest;
  */
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +16,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.tomek.firetest.adapter.AnimalsAdapter;
-import com.example.tomek.firetest.adapter.DividerItemDecoration;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -213,7 +210,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         if(view == buttonAddDog){
             //textViewUserEmail.setText("Welcome ");
-            startActivity(new Intent(this, AddDogActivity.class));
+            startActivity(new Intent(this, AddAnimalActivity.class));
         }
     }
 }

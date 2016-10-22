@@ -14,7 +14,8 @@
         android:layout_centerVertical="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/linearLayout">
 
         <EditText
             android:id="@+id/editTextEmail"
@@ -49,5 +50,14 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Rejestracja"
+        android:id="@+id/textView2"
+        android:layout_above="@+id/linearLayout"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -3,7 +3,7 @@
     <string name="title_activity_add_dog">AddDogActivity</string>
     <string name="title_activity_temp">temp</string>
     <string name="title_activity_main2">Main2Activity</string>
-    <string name="logout">Logout</string>
+    <string name="logout">Wyloguj się</string>
 
     <string-array name="planets_array">
     <item>Labrador</item>

@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -21,10 +22,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+;
 import java.util.Calendar;
 
-public class AddDogActivity extends AppCompatActivity {
+public class AddAnimalActivity extends AppCompatActivity {
 
     private Button buttonInsertDog;
     private EditText editTextDogName;
@@ -34,6 +35,8 @@ public class AddDogActivity extends AppCompatActivity {
     private EditText editTextSpecialSigns;
     private EditText editTextUniqNumber;
     private EditText editTextRace;
+    private CheckBox cbfemale;
+    private CheckBox cbmale;
 
 
     private FirebaseAuth firebaseAuth;
@@ -43,7 +46,7 @@ public class AddDogActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_dog);
+        setContentView(R.layout.activity_add_animal);
 
         Firebase.setAndroidContext(this);
 
@@ -55,6 +58,8 @@ public class AddDogActivity extends AppCompatActivity {
         editTextRace = (EditText) findViewById(R.id.editTextRace);
         editTextColor = (EditText) findViewById(R.id.editTextColor);
         editTextSpecialSigns = (EditText) findViewById(R.id.editTextSpecialSigns);
+        cbfemale = (CheckBox) findViewById(R.id.cbfemale);
+        cbmale = (CheckBox) findViewById((R.id.cbmale));
 
         Firebase ref = new Firebase("https://firetest-49b5c.firebaseio.com");
 
@@ -88,7 +93,7 @@ public class AddDogActivity extends AppCompatActivity {
 //
 //
 //                        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-//                                AddDogActivity.this,
+//                                AddAnimalActivity.this,
 //                                android.R.layout.simple_list_item_1,
 //                                mMessages);
 //                        listViewDogs.setAdapter(adapter);
@@ -108,7 +113,6 @@ public class AddDogActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-
 //                StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("pics/file.jpg");
 //                Uri file = Uri.fromFile(new File("storage/emulated/0/Pictures/file.jpg"));
 //                UploadTask uploadTask = storageRef.putFile(file);
@@ -118,8 +122,6 @@ public class AddDogActivity extends AppCompatActivity {
 //                    System.out.println(taskSnapshot.getBytesTransferred());
 //                    }
 //                });
-
-               // textViewDogs.setText("lala");
                 firebaseAuth = FirebaseAuth.getInstance();
 
                 FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -134,26 +136,47 @@ public class AddDogActivity extends AppCompatActivity {
                 String specialSigns = editTextSpecialSigns.getText().toString().trim();
                 String uniqNumber = editTextUniqNumber.getText().toString().trim();
                 String race = editTextRace.getText().toString().trim();
+                String sex = "";
 
-                Dog dog = new Dog();
+                if(cbfemale.isChecked()){
+                    sex = "żenska";
+                }
+                if(cbmale.isChecked()){
+                    sex = "męska";
+                }
+                if(cbfemale.isChecked() && cbmale.isChecked()){
+                    Toast.makeText(AddAnimalActivity.this, "Wybierz tylko jedną płeć", Toast.LENGTH_LONG).show();
+                }
+                if((cbmale.isChecked() || cbfemale.isChecked()) && ( editTextDogName.getText().toString().isEmpty() == false)){
 
-                dog.setBirthdate(birthdate);
-                dog.setName(name);
-                dog.setOwner(userID);
-                dog.setColor(color);
-                dog.setRace(race);
-                dog.setSpecialSigns(specialSigns);
-                dog.setUniqNumber(uniqNumber);
+                    Dog dog = new Dog();
 
-                Firebase newref = ref.child("Dogs").push();
-                newref.setValue(dog);
+                    dog.setBirthdate(birthdate);
+                    dog.setName(name);
+                    dog.setOwner(userID);
+                    dog.setColor(color);
+                    dog.setRace(race);
+                    dog.setSpecialSigns(specialSigns);
+                    dog.setUniqNumber(uniqNumber);
+                    dog.setSex(sex);
 
-                Firebase newref1 = ref.child("Vaccines").push();
 
-                newref.setValue(dog);
 
-                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
-                startActivity(intent);
+                    Firebase newref = ref.child("Dogs").push();
+                    newref.setValue(dog);
+
+                    Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(AddAnimalActivity.this, "Wprowadź poprawne dane", Toast.LENGTH_LONG).show();
+                }
+
+
+              //  Firebase newref1 = ref.child("Vaccines").push();
+
+                //newref.setValue(dog);
+
+
 
 
                 Vaccine vac = new Vaccine();
