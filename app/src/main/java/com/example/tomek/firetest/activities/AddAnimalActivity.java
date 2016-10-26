@@ -1,4 +1,4 @@
-package com.example.tomek.firetest;
+package com.example.tomek.firetest.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -12,6 +12,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tomek.firetest.R;
+import com.example.tomek.firetest.model.Dog;
+import com.example.tomek.firetest.model.Vaccine;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;

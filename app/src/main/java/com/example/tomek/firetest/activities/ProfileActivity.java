@@ -1,4 +1,4 @@
-package com.example.tomek.firetest;
+package com.example.tomek.firetest.activities;
 
 /**
  * Created by Tomek on 2016-09-12.
@@ -15,7 +15,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.tomek.firetest.R;
+import com.example.tomek.firetest.activities.AddAnimalActivity;
+import com.example.tomek.firetest.activities.LoginActivity;
 import com.example.tomek.firetest.adapter.AnimalsAdapter;
+import com.example.tomek.firetest.model.Dog;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;

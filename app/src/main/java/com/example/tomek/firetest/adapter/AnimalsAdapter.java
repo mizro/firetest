@@ -9,9 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.tomek.firetest.Dog;
+import com.example.tomek.firetest.model.Dog;
 import com.example.tomek.firetest.R;
-import com.example.tomek.firetest.ShowAnimalDetails;
+import com.example.tomek.firetest.activities.ShowAnimalDetails;
 
 import java.util.ArrayList;
 import java.util.List;

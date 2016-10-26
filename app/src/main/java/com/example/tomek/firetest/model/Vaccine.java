@@ -1,4 +1,4 @@
-package com.example.tomek.firetest;
+package com.example.tomek.firetest.model;
 
 /**
  * Created by Tomek on 2016-09-27.

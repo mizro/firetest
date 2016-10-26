@@ -6,9 +6,9 @@
     <string name="logout">Wyloguj się</string>
 
     <string-array name="planets_array">
-    <item>Labrador</item>
-    <item>Jamnik</item>
-    <item>Owczarek niemiecki</item>
-    <item>Kundel</item>
+        <item>Labrador</item>
+        <item>Jamnik</item>
+        <item>Owczarek niemiecki</item>
+        <item>Kundel</item>
     </string-array>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.tomek.firetest;
+package com.example.tomek.firetest.activities;
 
 /**
  * Created by Tomek on 2016-09-12.
@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tomek.firetest.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

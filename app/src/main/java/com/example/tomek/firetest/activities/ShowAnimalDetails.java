@@ -1,4 +1,4 @@
-package com.example.tomek.firetest;
+package com.example.tomek.firetest.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,13 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.tomek.firetest.adapter.AnimalsAdapter;
+import com.example.tomek.firetest.R;
 import com.example.tomek.firetest.adapter.VaccinesAdapter;
+import com.example.tomek.firetest.model.Vaccine;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -21,9 +20,7 @@ import com.firebase.client.ValueEventListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class ShowAnimalDetails extends AppCompatActivity {
 
@@ -50,6 +47,17 @@ public class ShowAnimalDetails extends AppCompatActivity {
         text = (TextView) findViewById(R.id.textViewRasa);
 
         addVaccineButton = (Button) findViewById(R.id.addVaccineButton);
+
+        addVaccineButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), AddVaccineActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
 
         Firebase.setAndroidContext(this);
 
@@ -144,6 +152,7 @@ public class ShowAnimalDetails extends AppCompatActivity {
 //        });
 
     }
+
 
     private void renderView() {
         rvVaccines = (RecyclerView) findViewById(R.id.rv_vaccines);
