@@ -10,7 +10,7 @@
     android:layout_marginRight="@dimen/fab_margin"
     android:layout_marginBottom="@dimen/fab_margin"
     android:elevation="100dp"
-    card_view:cardBackgroundColor="@android:color/holo_green_dark"
+    card_view:cardBackgroundColor="#3F51B5"
     card_view:cardCornerRadius="8dp">>
 
     <LinearLayout
@@ -23,6 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Staszek"
+            android:textColor="@color/colorText"
             android:textSize="25dp"
             android:textStyle="normal"
             android:layout_marginLeft="@dimen/activity_vertical_margin"
@@ -33,6 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="1990.02.1"
+            android:textColor="@color/colorText"
             android:textSize="18dp"
             android:textStyle="italic"
             />

@@ -52,6 +52,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
         renderView();
 
         Firebase.setAndroidContext(this);

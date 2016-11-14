@@ -60,7 +60,7 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.AnimalVi
         final Dog dog = animals.get(position);
         holder.tvAnimalName.setText(dog.getName());
         holder.tvAnimalBirthdate.setText(dog.getBirthdate());
-        holder.tvAnimalName.setTextColor(Color.BLUE);
+       // holder.tvAnimalName.setTextColor(Color.BLUE);
 
 
         holder.cvAnimals.setOnClickListener(new View.OnClickListener() {

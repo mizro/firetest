@@ -10,7 +10,7 @@
     android:layout_marginRight="@dimen/fab_margin"
     android:layout_marginBottom="@dimen/fab_margin"
     android:elevation="100dp"
-    card_view:cardBackgroundColor="@android:color/holo_green_dark"
+    card_view:cardBackgroundColor="@color/colorPrimary"
     card_view:cardCornerRadius="8dp">>
 
     <LinearLayout
@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             tools:text="Staszek"
             android:textSize="25dp"
+            android:textColor="@color/colorText"
             android:textStyle="normal"
             android:layout_marginLeft="@dimen/activity_vertical_margin"
             />
@@ -32,6 +33,7 @@
             android:id="@+id/tv_vaccine_nextdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorText"
             tools:text="1990.02.1"
             android:textSize="18dp"
             android:textStyle="italic"

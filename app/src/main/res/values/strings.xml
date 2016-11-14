@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FireTest</string>
+    <string name="app_name">Vacci Time</string>
     <string name="title_activity_add_dog">AddDogActivity</string>
     <string name="title_activity_temp">temp</string>
     <string name="title_activity_main2">Main2Activity</string>

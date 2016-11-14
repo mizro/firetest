@@ -56,7 +56,7 @@ public class AddAnimalActivity extends AppCompatActivity {
         buttonInsertDog = (Button) findViewById(R.id.buttonInsertDog);
         editTextBirthDate = (EditText) findViewById(R.id.editTextBirthDate);
         editTextDogName = (EditText) findViewById(R.id.editTextDogName);
-        textViewDogs = (TextView) findViewById(R.id.textViewDogs);
+
         editTextUniqNumber = (EditText) findViewById(R.id.editTextUniqNumber);
         editTextRace = (EditText) findViewById(R.id.editTextRace);
         editTextColor = (EditText) findViewById(R.id.editTextColor);
